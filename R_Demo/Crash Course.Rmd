@@ -1,0 +1,456 @@
+---
+title: "R Crash Course"
+output: html_notebook
+---
+by Jaehyuk CHOI
+
+```{r}
+browseURL("http://www.jaehyukchoi.net/phbs_en")
+```
+
+## Why use R?
+
+* free (vs Matlab)
+* open source (lots of volutarily developers distributing 'packages')
+* statistics, scientific computation, graphics
+
+## simple calculation
+
+```{r}
+3 + 4
+```
+
+```{r}
+3 * 16
+```
+
+## Useful shortcut keys
+
+* Ctrl-Enter, Ctrl-Enter on selection
+
+* Ctrl-L: clear screen
+
+* history, partical completion (Ctrl+Up)
+
+
+## variable assignment
+
+* variables are case-sensitive
+
+```{r}
+x <- 5
+X <- 15
+(x <- 5)
+```
+
+```{r}
+y <- 8
+x + y
+```
+
+## special constants
+```{r}
+TRUE 
+
+T # same as TRUE
+
+FALSE
+
+F # same as FALSE
+
+NA # Not Available, or Not Applicable
+
+x.vec <- c(1,2)
+
+Inf
+
+1/0
+
+NaN
+
+0/0
+```
+
+## vector
+
+```{r}
+( x.vec <- 1:10 )  # matlab style a:b:c doesn't work
+
+( x.vec <- c(1.3, 2.4, 3.5, 0.4) )
+
+( y.vec <- c(5,4,3,2) )
+
+x.vec + y.vec
+
+x.vec * y.vec
+```
+
+## seq
+
+```{r}
+( x.vec <- seq(1, 5, 0.1) )
+
+( x.vec <- seq(1, 100, 2) )
+
+( x.vec <- seq(1, 5, by = 0.1) )
+
+length(x.vec)
+
+```
+
+## rep function
+
+```{r}
+( y.vec <- rep(4, 10) )
+
+( y.vec <- rep(c(3,4), 10) )
+
+```
+
+## indexing
+
+```{r}
+( x.vec <- 1:10 )
+
+x.vec[4]
+
+x.vec[1:5]
+
+x.vec[-1]
+
+x.vec[-(1:5)]
+
+x.vec[ x.vec > 5 ]
+
+x.vec[ x.vec > 5 ] <- 9
+x.vec
+```
+
+
+## functions on vector
+```{r}
+( x.vec <- rnorm(10) )
+
+sum( x.vec )
+
+mean( x.vec )
+
+var(x.vec)
+
+prod( x.vec )
+
+exp( x.vec )
+
+log( x.vec )
+```
+
+## Probability distribution
+```{r}
+( x.vec <- seq(-2,2,by=0.1) )
+
+d.vec <- dnorm( x.vec )
+
+plot( x.vec, d.vec )
+
+p.vec <- pnorm( x.vec )
+
+plot( x.vec, p.vec )
+
+( r.vec <- rnorm(10) )
+
+runif(10)
+dunif(c(0, 0.5, 1))
+punif(c(0, 0.5, 1))
+```
+
+
+## Matrix
+```{r}
+( x.mat <- matrix(1:20) )
+
+( x.mat <- matrix(1:20, 4) )
+
+( x.mat <- matrix(1:20, nrow=5) )
+
+( x.mat <- matrix(1:20, nrow=5, byrow=T) )
+```
+
+## Alternative ways of creating matrix
+```{r}
+( identity.mat <- diag( 10 ) )
+( x.mat <- matrix( rnorm(25), ncol=5 ))
+```
+
+## functions on matrix
+```{r}
+exp( x.mat )
+
+dim( x.mat )
+
+diag(x.mat)
+```
+
+## matrix is also a vector (column-wise). 
+* Rule-of-thumb is vector is a column vector by default
+
+```{r}
+length( x.mat )
+x.mat
+as.vector( x.mat )
+
+```
+
+## operations between vectors (or matrix) with different sizes
+
+```{r}
+( x.vec <- 1:20 )
+( y.vec <- 1:4 ) 
+
+x.vec * y.vec   # vector with smaller size is applied repeatedly.
+y.vec * x.vec
+
+( y.vec <- 1:3 ) 
+x.vec * y.vec # error
+
+( x.mat <- matrix( 1:20, nrow = 4 ) )
+( y.vec <- 1:4 ) 
+
+x.mat * y.vec  # the same applies to the matrix * vector multiplication
+y.vec * x.mat
+```
+
+## matrix operations
+
+```{r}
+
+( x.mat <- matrix( 1:25, ncol=5 ) )
+diag( x.mat )
+t(x.mat)
+
+x.mat[2:4,2:4]
+x.mat[2:4,2:4] <- 0
+x.mat
+
+dim(x.mat)
+
+( i.mat <- diag(5) )
+( x.mat <- matrix(seq(1,25), ncol=5) )
+
+i.mat * x.mat
+i.mat %*% x.mat
+
+( b.vec <- 1:5 )
+( y.mat <- 10*diag(5) + matrix(rnorm(25), 5) )
+
+( a.vec <- solve( y.mat, b.vec ) )   # Solve a such that Y * a = b
+y.mat %*% a.vec - b.vec # confirm that Y * a = b
+
+library("MASS")
+( yinv.mat <- MASS::ginv(y.mat) )
+yinv.mat %*% b.vec - a.vec # Inv(Y) * b = a
+
+( eig <- eigen(y.mat) )
+eig$values
+eig$vectors
+
+rowSums(x.mat)
+rowMeans(x.mat)
+
+colSums(x.mat)
+colMeans(x.mat)
+
+```
+
+## Random number generation example: compute PI
+
+We compute the area of the unit circle (PI) by random number generation (Monte-Carlo)
+
+```{r}
+
+xy <- matrix(runif(1e4), ncol=2)
+head(xy)
+
+th <- 2*pi*seq(0,1,by=0.01)
+par(pty="s")
+plot(xy, type="p", pch=".")
+lines(cos(th),sin(th), col="red", lw=4)
+
+xy <- matrix(runif(1e6), ncol=2)
+sum( rowSums(xy*xy)<1 ) / nrow(xy) * 4
+
+```
+
+
+
+### Control sequence
+```{r}
+
+val <- 2
+if ( val == 1 ) {
+  1
+} else if( val == 2) {
+  2
+} else {
+  3
+}
+```
+
+
+### For-loops, but avoid using it if possible
+```{r}
+
+i.sum <- 0
+for(i in 1:10) {
+  print(i)
+  i.sum <- i.sum + i
+} 
+i.sum
+
+( i.sum <- sum(1:10) )
+
+```
+
+
+## functions
+```{r}
+
+# Sourcing
+source('crash_course_functions.R')
+
+AddTwoNumbers( 2, 5 )
+
+LogBase( 1000, 10 )
+
+LogBase( 1000 )
+
+LogBase( 1000, base = 2 )
+
+```
+
+
+## variable scope 
+
+```{r}
+
+# AddTwoNumbersWrong( 3, 4 ) # Error because yy is not defined in the function
+
+yy <- 10
+
+AddTwoNumbersWrong( 3, 4 ) # shouldn't work, but it works
+
+```
+
+## list
+```{r}
+
+a <- list(name="J Choi", phbs_number=12334)
+a$name
+
+```
+
+
+## Dataframe (Car dataset)
+```{r}
+
+# install.packages("datasets")
+head(mtcars)
+#head(iris)
+
+```
+
+```{r}
+
+c( ncol(mtcars), nrow(mtcars) )
+colMeans(mtcars)
+sapply(mtcars, sd)
+
+## components by name or index
+mtcars["Datsun 710", "hp" ]
+mtcars[3,4]               
+
+## column vector
+mtcars[[4]]
+
+mtcars[["hp"]]
+mtcars$hp
+mtcars[, "hp"]
+
+## Column Slice
+mtcars[2] 
+mtcars["disp"]
+mtcars[ c("disp", "drat")]
+
+## Row slice
+mtcars[ 2:5, ]
+mtcars[ mtcars$mpg>30, ]
+mtcars[ mtcars$mpg>30, ]$hp
+
+```
+
+## Linear regression
+```{r}
+library("datasets")
+browseURL( "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html" )
+head(cars)
+
+cars.fitted = lm(dist ~ speed, data = cars)
+summary( cars.fitted )
+
+plot( cars$speed, cars$dist, xlab = "Speed (mph)", ylab = "Stopping distance (ft)" )
+abline(cars.fitted, col="red", lw=2)
+```
+
+```{r}
+plot(cars, xlab = "Speed (mph)", ylab = "Stopping distance (ft)", las = 1, xlim = c(0, 25))
+d <- seq(0, 25, length.out = 200)
+
+for(degree in 1:4) {
+  fm <- lm(dist ~ poly(speed, degree), data = cars)
+  assign(paste("cars.fitted", degree, sep = "."), fm)
+  lines(d, predict(fm, data.frame(speed = d)), col = degree)
+}
+anova(cars.fitted.1, cars.fitted.2, cars.fitted.3, cars.fitted.4)
+
+```
+
+## XL, CVS file
+```{r}
+wine <- read.csv("winequality-red.csv", header = TRUE, sep =";")
+head(wine)
+```
+## Reading remote file on-line
+
+```{r}
+uci <- "http://archive.ics.uci.edu/ml/machine-learning-databases/"
+uci <- paste(uci,"echocardiogram/echocardiogram.data",sep="")
+ecc <- read.csv(uci)
+head(ecc)
+```
+
+## Execution time
+```{r}
+i.sum <- 0;
+system.time(
+  for(i in 1:1e6) {
+    i.sum <- i.sum + i
+  } 
+)
+
+system.time( sum(as.numeric(1:1e6)) )
+system.time( exp( rnorm(1e7) ) )
+```
+
+## avoid resizeing vector size
+```{r}
+( x.vec <- 1:10 )
+length(x.vec)
+x.vec[11] <- 11  ## no good !
+length(x.vec)
+```
+
+## Google's R Style guide
+```{r}
+browseURL( 'https://cran.r-project.org/manuals.html' )
+browseURL( 'https://google.github.io/styleguide/Rguide.xml' )
+```
+
