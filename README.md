@@ -1,5 +1,12 @@
 # 2016-17 Module 3, Stochastic Finance
 
+## Class notes: 
+
+* [World Series Derivative](files/World Series.pdf)
+* [Probability Review](files/Notes StoFin.pdf)
+* [SCFA](files/Notes Steele.pdf) (upto Ch. 1)
+
+
 ## Announcements (latest on top)
 * __[NEW]__ Class note: Many students asked about the class notes. I will upload it very soon.
 
