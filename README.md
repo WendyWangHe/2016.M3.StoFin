@@ -8,8 +8,8 @@
 
 
 ## Announcements (latest on top)
-* HW2: Due next Thurs (3.16)
-  * Related to the last statement of Ch 1, prove that $E(\tau) = \infty$. [Hint: consider the derivative of $\phi(z)$ with respect to $z$]
+* __[NEW]__ __HW2__: Due next Thurs (3.16)
+  * Related to the last statement of Ch 1, prove that the expected time for the gambler to become first positive is infinite: $E(\tau) = \infty$. [Hint: consider the derivative of $\phi(z)$ with respect to $z$]
   * Exercise 2.1
 
 * Class note: Many students asked about the class notes. I will upload it very soon.
