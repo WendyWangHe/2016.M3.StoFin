@@ -4,7 +4,7 @@
 
 * [World Series Derivative](files/World Series.pdf)
 * [Probability Review](files/Notes StoFin.pdf)
-* [SCFA](files/Notes Steele.pdf) (upto Ch. 2)
+* [SCFA](files/Notes Steele.pdf) (upto Ch. 4)
 
 
 ## Announcements (latest on top)
