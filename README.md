@@ -8,7 +8,9 @@
 
 
 ## Announcements (latest on top)
-* __[NEW]__ __HW2__: Due next Thurs (3.16)
+* __[NEW]__ I put the [mid-texm exam and solution of Applied Stochastic Processes](https://github.com/PHBS/2016.M3.StoFin/blob/master/files/2016.M1.ASP_Midterm_Solution.pdf) in Module 1 under files folder. The problem 2, 3 and 4 is relevant to our mid-term exam, please review them before exam.
+
+* __HW2__: Due next Thurs (3.16)
   * Related to the last statement of Ch 1, prove that the expected time for the gambler to become first positive is infinite: $E(\tau) = \infty$. [Hint: consider the derivative of $\phi(z)$ with respect to $z$]
   * Exercise 2.1
 
