@@ -8,7 +8,7 @@
 
 
 ## Announcements (latest on top)
-* __[NEW]__ I put the [some exercise problem solutions](https://github.com/PHBS/2016.M3.StoFin/blob/master/files/SCFA Some Solutions.pdf) un to Ch. 4.
+* __[NEW]__ I put the [some exercise problem solutions](https://github.com/PHBS/2016.M3.StoFin/blob/master/files/SCFA%20Some%20Solutions.pdf) un to Ch. 4.
 
 * __[NEW]__ I put the [mid-texm exam and solution of Applied Stochastic Processes](https://github.com/PHBS/2016.M3.StoFin/blob/master/files/2016.M1.ASP_Midterm_Solution.pdf) in Module 1 under files folder. The problem 2, 3 and 4 is relevant to our mid-term exam, please review them before exam.
 
